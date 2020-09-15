@@ -37,3 +37,5 @@ services:
       POSTGRES_DB: moodle
       POSTGRES_PASSWORD: "${MOODLE_DOCKER_DBPASS}"
     container_name: moodle_db
+    volumes:
+      - "${PERSISTENTDIR}/postgresql/data:/var/lib/postgresql/data"
