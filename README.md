@@ -4,9 +4,9 @@ A Docker environment. Used for hosting https://github.com/flocko-motion/street-c
 
 ## Install
 
-- `git clone https://github.com/leoauri/moodle-docker` or via SSH
+- `git clone https://github.com/flocko-motion/moodle-docker` or via SSH
 - `cd moodle-docker`
-- `git clone https://github.com/leoauri/street-college-moodle-core moodle` or via SSH
+- `git clone https://github.com/flocko-motion/street-college-moodle-core moodle` or via SSH
 - `cp .config-dist .config`
 - Setup environment variables:  
 `vi .config`
@@ -26,7 +26,7 @@ The directory provided should contain a pgsql dump named db_backup.sql and a moo
 ## Backup
 
 Run `bin/moodle-backup`.  
-This creates a timestamped folder in `~/backups` containing pgsql dump and moodledata directory.
+This creates a timestamped folder in `./backups` containing pgsql dump and moodledata directory.
 
 ## Activate maintenance mode
 
@@ -74,11 +74,11 @@ Core is almost untouched, so rebasing should be trivial.
 * Choose the upstream branch you wish to take updates from, probably of the form `upstream/MOODLE_39_STABLE`.
 * Use the command `git rebase --onto <upstream_branch> <cut_point>` to replay local commits onto the newer upstream branch.
 
-### Upgrade metal
+### Upgrade your host system (Debian/Ubuntu)
 
-This is only relevant to running in an Ubuntu/docker environment:
+Make sure that your OS is up to date:
 
-Upgrade metal:
+Upgrade host system:
   - `apt update`
   - `apt upgrade -y`
   - maybe `apt full-upgrade -y`
