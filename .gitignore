@@ -1,4 +1,6 @@
 /moodle/
 /persistent/
+/backups/
+.config
 .env
 .env-smtp
