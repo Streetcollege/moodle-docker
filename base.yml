@@ -12,6 +12,8 @@ services:
       - "${MOODLE_DOCKER_WWWROOT}:/var/www/html"
       - "${PERSISTENTDIR}/letsencrypt:/etc/letsencrypt"
       - "${ASSETDIR}/web/apache2_faildumps.conf:/etc/apache2/conf-enabled/apache2_faildumps.conf"
+      - "./.htpasswd:/etc/apache2/.htpasswd"
+      - "./custom_apache_config.conf:/etc/apache2/conf-enabled/custom_apache_config.conf"
     environment:
       MOODLE_DOCKER_DBTYPE: pgsql
       MOODLE_DOCKER_DBUSER: moodle
