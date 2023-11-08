@@ -60,7 +60,7 @@ export MOODLE_DOCKER_ADMIN_EMAIL=${MOODLE_DOCKER_ADMIN_EMAIL:-}
 # PHP Version.
 export MOODLE_DOCKER_PHP_VERSION=${MOODLE_DOCKER_PHP_VERSION:-7.1}
 
-dockercompose="docker-compose -f ${basedir}/base.yml"
+dockercompose="docker compose -f ${basedir}/base.yml"
 
 # Load postfix mta if set
 if [ "$MOODLE_DOCKER_SMTP_HOST" = "postfix" ];
