@@ -1,4 +1,4 @@
 /moodle/
 /persistent/
-.env
-.env-smtp
+#.env
+#.env-smtp
