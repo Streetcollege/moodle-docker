@@ -10,10 +10,10 @@ fi
 
 
 # start letsencrypt certbot
-if [ "$MOODLE_DOCKER_SSL" = true ]; then
-    certbot --apache --non-interactive --agree-tos --no-redirect \
-        -d "$MOODLE_DOCKER_WEB_HOST" -m "$MOODLE_DOCKER_ADMIN_EMAIL"
-fi
+certbot --apache --non-interactive --agree-tos --no-redirect \
+    -d "$MOODLE_DOCKER_WEB_HOST" \
+    -d "www.${MOODLE_DOCKER_WEB_HOST#www.}" \
+    -m "$MOODLE_DOCKER_ADMIN_EMAIL"
 
 # wait until outbound port is freed
 while netstat -tulpn | grep ":80\s" > /dev/null;
