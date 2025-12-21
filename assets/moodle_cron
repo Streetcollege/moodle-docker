@@ -1,3 +1,5 @@
 SHELL=/bin/bash
 BASH_ENV=/container.env
-* * * * * www-data /usr/local/bin/php /var/www/html/admin/cli/cron.php >> /var/log/cron.log 2>&1
+
+# Moodle cron: single instance (flock) and less spammy schedule
+*/5 * * * * www-data flock -n /tmp/moodle-cron.lock /usr/local/bin/php /var/www/html/admin/cli/cron.php >> /var/log/cron.log 2>&1
