@@ -9,6 +9,14 @@ if ! [ "$MOODLE_DOCKER_DEV_MODE" = true ]; then
 fi
 
 
+# Explicit names let Certbot match both certificate domains on first start.
+export APACHE_DOCUMENT_ROOT="${APACHE_DOCUMENT_ROOT:-/var/www/html}"
+if [ -n "${MOODLE_DOCKER_WEB_HOST:-}" ]; then
+    SC_DEFAULT_VHOST="/etc/apache2/sites-available/000-default.conf"
+    sed -i -E '/^[[:space:]]*Server(Name|Alias)[[:space:]]/d' "$SC_DEFAULT_VHOST"
+    sed -i "/<VirtualHost \*:80>/a\\    ServerName ${MOODLE_DOCKER_WEB_HOST}\\n    ServerAlias www.${MOODLE_DOCKER_WEB_HOST#www.}" "$SC_DEFAULT_VHOST"
+fi
+
 # start letsencrypt certbot
 certbot --apache --non-interactive --agree-tos --no-redirect \
     -d "$MOODLE_DOCKER_WEB_HOST" \
